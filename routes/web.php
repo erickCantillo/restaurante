@@ -24,4 +24,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/users', UsersTable::class)->name('users');
 
-
+Route::middleware(['auth:sanctum', 'verified'])->get('/productos', function () {
+    return view('productos');
+})->name('productos');

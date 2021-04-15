@@ -12,11 +12,11 @@ class UsersTable extends Component
 
     protected $queryString = [
         'search' => ['except' => ''],
-        'perPage' => ['excep' => '2']
+        'perPage' => ['excep' => '5']
     ];
 
     public $search = '';
-    public $perPage = '2';
+    public $perPage = '5';
     public function render()
     {
         return view('livewire.users-table', [
@@ -27,8 +27,11 @@ class UsersTable extends Component
     }
 
     public function clear(){
-        $this->perPage = '2';
+        $this->perPage = '5';
         $this->page = 1;
         $this->search = '';
-        }
     }
+    
+    
+
+}
