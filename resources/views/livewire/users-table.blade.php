@@ -12,6 +12,22 @@
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                       <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                          <div class="flex bg-white px-4 py-3  sm:px-6">
+                            <input 
+                            wire:model="search"
+                            type="text" 
+                            placeholder="Buscar..." 
+                            class="form-input rounded-md shadow-ms mt-1 block w-full">
+                          
+                            <div wire:model="perPage" class="form-input rounded-md shadow-ms mt-1 block">
+                              <select class="outline-none text-gray-500 text-sm ml-6">
+                              <option value="2"> 2 Por Pagina</option>
+                              <option value="1"> 1 Por Pagina</option>
+                              </select>
+                            </div>
+                            <button wire:click="clear"  class="form-input rounded-md shadow-ms mt-1 block ml-6" > x</button>
+                          </div>
+                        @if($users->count())
                           <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                               <tr>
@@ -60,6 +76,14 @@
                               <!-- More people... -->
                             </tbody>
                           </table>
+                          <div class="bg-white px-4 py-3 border-t border-gray-200 sm:px-6">
+                          {{ $users->links() }}
+                          </div>
+                        @else
+                        <div class="bg-white px-4 py-3 border-t border-gray-200 sm:px-6">
+                          No hay resultados para la busqueda "{{ $search }}" en la pagina {{ $page }} al mostrar {{ $perPage }} por pagina 
+                          </div>
+                        @endif
                         </div>
                       </div>
                     </div>
