@@ -81,7 +81,7 @@ class Productos extends Component
     {
         $item->delete();
         $this->confirmingProductoDeletion = false;
-        session()->flash('message', 'Producto Deleted Successfully');
+        session()->flash('message', 'Producto Eliminado Exitosamente');
     }
 
     
@@ -105,14 +105,14 @@ class Productos extends Component
  
         if(isset( $this->producto->id)) {
             $this->producto->save();
-            session()->flash('message', 'Producto Saved Successfully');
+            session()->flash('message', 'Producto Guardado Exitosamente');
         } else {
             auth()->user()->productos()->create([
                 'name' => $this->producto['name'],
                 'price' => $this->producto['price'],
                 'status' => $this->producto['status'] ?? 0
             ]);
-            session()->flash('message', 'Producto Added Successfully');
+            session()->flash('message', 'Producto Añadido Exitosamente');
         }
  
         $this->confirmingProductoAdd = false;

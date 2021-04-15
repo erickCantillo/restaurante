@@ -12,15 +12,15 @@
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                       <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                          <div class="flex bg-white px-4 py-0  sm:px-6 content-center">
+                          <div class="flex bg-white px-4 py-0  sm:px-6 justify-between">
                            
                             <input 
                             wire:model.debounce.500ms="search"
-                            type="text" 
+                            type="search" 
                             placeholder="Buscar..." 
                             class="form-input leading-tight focus:outline-none focus:shadow-outline rounded-md shadow-ms m-2 block content-center ">
                            
-                            <button wire:click="clear" class="form-input rounded-md shadow-ms mt-1 block  p-2"> x</button>
+                     
 
                             <div wire:model="perPage" class="form-input rounded-md shadow-ms m-2 block">
                               <select class="outline-none rounded-md shadow text-gray-500 text-sm ml-6">
