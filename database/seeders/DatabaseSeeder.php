@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
        \App\Models\User::factory(50)->create();
-         \App\Models\Producto::factory()->count(40)->create(['user_id' => 1]);
+         \App\Models\Producto::factory()->count(40)->create(['user_id' => 1, 'id_categoria' => 1]);
+         \App\Models\Categoria::factory()->count(4)->create(['user_id' => 1]);
     }
 }

@@ -63,4 +63,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(\App\Models\Producto::class);
     }
+    
+    public function categorias(){ 
+        return $this->hasMany(\App\Models\Categoria::class);
+    }
+
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-
+use App\Models\Categoria;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -16,6 +16,8 @@ class Productos extends Component
     public $sortBy = 'id';
     public $sortAsc = true;
     public $producto;
+    public $id_categoria = 0;
+    public $categoria;
 
     public $confirmingProductoDeletion = false;
     public $confirmingProductoAdd = false;
@@ -25,12 +27,22 @@ class Productos extends Component
         'q' => ['except' => ''],
         'sortBy' => ['except' => 'id'],
         'sortAsc' => ['except' => true],
+        'categoria' =>['except' => ''],
+       
     ];
 
     protected $rules = [
         'producto.name' => 'required|string|min:4',
         'producto.price' => 'required|numeric|min:2000,',
-        'producto.status' => 'boolean'
+        'producto.status' => 'boolean',
+        'id_categoria' => 'required|exists:categorias,id'
+    ];
+    protected $messages= [
+        'id_categoria.exists' => 'Seleccione una Categoria Valida',
+        'producto.price.required' => 'Este campo es Obligatorio',
+        'producto.price.numeric' => 'Este campo de ser un numero',
+        'producto.name.required' => 'Este campo es Obligatorio',
+
     ];
     
     public function render()
@@ -43,15 +55,19 @@ class Productos extends Component
                 ->orWhere('price', 'like', '%'. $this->q.'%');
             });
         })
+        ->when($this->categoria, function($query){
+            return $query->where('id_categoria',$this->categoria);
+        })
         ->when($this->active, function( $query) {
             return $query->active();
         })
         ->orderBy( $this->sortBy, $this->sortAsc ? 'ASC' : 'DESC');
 
         $productos = $productos->paginate(10);
-
+        $categorias = Categoria::where(['user_id' => auth()->user()->id])->get();
         return view('livewire.productos', [
             "productos" => $productos,
+            "categorias" => $categorias
         ]);
     }
     public function updatingActive() 
@@ -95,6 +111,7 @@ class Productos extends Component
     {
         $this->resetErrorBag();
         $this->producto = $item;
+        $this->id_categoria = $this->producto->id_categoria;
         $this->confirmingProductoAdd = true;
     }
 
@@ -102,13 +119,16 @@ class Productos extends Component
     public function saveProducto() 
     {
         $this->validate();
+       
  
         if(isset( $this->producto->id)) {
+            $this->producto->id_categoria = $this->id_categoria;
             $this->producto->save();
             session()->flash('message', 'Producto Guardado Exitosamente');
         } else {
             auth()->user()->productos()->create([
                 'name' => $this->producto['name'],
+                'id_categoria' => $this->id_categoria,
                 'price' => $this->producto['price'],
                 'status' => $this->producto['status'] ?? 0
             ]);

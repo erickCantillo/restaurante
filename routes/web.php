@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Categorias;
 use Illuminate\Support\Facades\Route;
 use App\models\User;
 use App\Http\Livewire\UsersTable;
@@ -23,6 +24,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/users', UsersTable::class)->name('users');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/categorias', Categorias::class)->name('categorias');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/productos', function () {
     return view('productos');
