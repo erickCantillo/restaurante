@@ -26,6 +26,10 @@ class UsersTable extends Component
         ]);
     }
 
+    public function updatingSearch(){
+        $this->resetPage();
+    }
+
     public function clear(){
         $this->perPage = '5';
         $this->page = 1;

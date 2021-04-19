@@ -44,7 +44,7 @@ class Productos extends Component
         'producto.name.required' => 'Este campo es Obligatorio',
 
     ];
-    
+        
     public function render()
     {
         

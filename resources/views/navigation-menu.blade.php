@@ -16,14 +16,23 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="/users" :active="request()->routeIs('users')">
-                        {{ __('Users') }}
+                        {{ __('Personal') }}
                     </x-jet-nav-link>
 
                     <x-jet-nav-link href="/categorias" :active="request()->routeIs('categorias')">
-                        {{ __('Categorias') }}
+                        {{ __('Grupos') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="/productos" :active="request()->routeIs('productos')">
-                        {{ __('Productos') }}
+                        {{ __('Equipos') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="/prestamos" :active="request()->routeIs('prestamos')">
+                        {{ __('Prestamos') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="/solicitudes" :active="request()->routeIs('solicitudes')">
+                        {{ __('Solicitudes') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="/solicitudes" :active="request()->routeIs('solicitudes')">
+                        {{ __('Reportes') }}
                     </x-jet-nav-link>
                 </div> 
             </div>
