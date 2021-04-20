@@ -28,9 +28,6 @@
                             type="search" 
                             placeholder="Buscar..." 
                             class="form-input leading-tight focus:outline-none focus:shadow-outline rounded-md shadow-ms m-2 block content-center ">
-                           
-                     
-
                             <div class="form-input rounded-md shadow-ms m-2 block">
                               <select class="outline-none rounded-md shadow text-gray-500 text-sm ml-6">
                               <option value="5"> 5 Por Pagina</option>
@@ -212,17 +209,16 @@
                 </div>
                 <div class="col-span-6 sm:col-span-4">
                     <x-jet-label for="name" value="{{ __('Foto') }}" />
-                    <x-jet-input id="name" wire:model="photo" type="file" class="mt-1 block" />
+                    <x-jet-input id="photo" name="photo" wire:model="photo" type="file" class="mt-1 block" />
                     @error('photo') <span class="error">{{ $message }}</span> @enderror
 
-                    @if (!$photo_editar && $photo)
+                    @if ($photo)
                     Tu Foto:
                       <img src="{{ $photo->temporaryUrl() }}" class="h-12 w-12 rounded-full">
                      @endif
                      @if($photo_editar)
                      <img class="h-12 w-12 rounded-full" src="{{ 
                       Storage::url($photo_editar) }}">
-                     
                      @endif
                 </div>
     

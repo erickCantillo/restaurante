@@ -17,19 +17,19 @@ class CreateEquiposTable extends Migration
             $table->increments('id');
             $table->integer('categoria_id')->index();
             $table->string('codigo_interno')->unique();
-            $table->string('serial');
-            $table->string('codigo_SAP');
+            $table->string('imagen');
+            $table->string('serial')->unique();
+            $table->string('codigo_SAP')->unique();
             $table->string('valor_compra');
             $table->string('ubicacion');
-            $table->string('marca')->nullable();
-            $table->string('fabricante')->nullable();
+            $table->string('marca');
             $table->string('fecha_ingreso');
-            $table->double('valor_dia')->nullable();
+            $table->double('valor_dia');
             $table->string('responsable');
             $table->string('observaciones')->nullable();
             $table->string('estado')->default('DISPONIBLE');
             $table->string('tipo');
-            $table->string('imagen')->nullable();
+            
             $table->timestamps();
         });
     }
