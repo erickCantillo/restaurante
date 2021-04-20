@@ -22,7 +22,7 @@
                     <x-jet-nav-link href="/categorias" :active="request()->routeIs('categorias')">
                         {{ __('Categorización') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="/productos" :active="request()->routeIs('productos')">
+                    <x-jet-nav-link href="/equipos" :active="request()->routeIs('equipos')">
                         {{ __('Equipos') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="/prestamos" :active="request()->routeIs('prestamos')">
@@ -169,8 +169,20 @@
                 {{ __('Categorias') }}
             </x-jet-responsive-nav-link>
             
-            <x-jet-responsive-nav-link href="/productos" :active="request()->routeIs('productos')">
-                {{ __('Productos') }}
+            <x-jet-responsive-nav-link href="/equipos" :active="request()->routeIs('equipos')">
+                {{ __('Equipos') }}
+            </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="/proyectos" :active="request()->routeIs('proyectos')">
+                {{ __('Proyectos') }}
+            </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="/prestamos" :active="request()->routeIs('prestamos')">
+                {{ __('Prestamos') }}
+            </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="/solicitudes" :active="request()->routeIs('solicitudes')">
+                {{ __('Solicitudes') }}
             </x-jet-responsive-nav-link>
         </div>
 
