@@ -9,10 +9,10 @@ class Equipo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'status'];
+    protected $fillable = ['codigo_interno', 'serial', 'codigo_SAP', 'valor_compra', 'ubicacion', 'marca', 'fabricante', 'fecha_ingreso', 'valor_dia', 'responsable', 'observaciones', 'estado', 'tipo', 'imagen'];
 
     public function categoria(){ 
-        return $this->belongsTo(\App\Models\Categoria::class);
+        return $this->belongsTo(\App\Models\Categoria::class, 'categoria_id');
     }
 
     public function scopeActive($query) 

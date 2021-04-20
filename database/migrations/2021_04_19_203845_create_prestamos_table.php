@@ -16,7 +16,7 @@ class CreatePrestamosTable extends Migration
         Schema::create('prestamos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('equipo_id')->index();
-            $table->integer('persona_id')->index();
+            $table->integer('user_id')->index();
             $table->integer('proyecto_id')->index();
             $table->integer('supervisor_id')->index();
             $table->string('lugar_trabajo');
