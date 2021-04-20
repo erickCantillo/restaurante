@@ -50,7 +50,13 @@
                             <thead class="bg-gray-50">
                               <tr>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                  Name
+                                  Nombre
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                  Nivel
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                  Categoria Padre
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Estado
@@ -67,10 +73,33 @@
 
                                 <td class="px-6 py-4 whitespace-nowrap">
                                   <div class="flex items-center">
-                                
+                                    <div class="flex-shrink-0 h-10 w-10">
+                                      <img class="h-10 w-10 rounded-full" src="{{ 
+                                        Storage::url($categoria->imagen) }}">
+                                    </div>
                                     <div class="ml-4">
                                       <div class="text-sm font-medium text-gray-900">
                                      {{ $categoria->name }} 
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="flex items-center">
+                                
+                                    <div class="ml-4">
+                                      <div class="text-sm font-medium text-gray-900">
+                                     {{ $categoria->nivel }} 
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="flex items-center">
+                                
+                                    <div class="ml-4">
+                                      <div class="text-sm font-medium text-gray-900">
+                                     {{ $categoria->categoria_id == 0 ? 'Sin Padre' : $categoria->padre->name}} 
                                       </div>
                                     </div>
                                   </div>
@@ -132,14 +161,69 @@
 
         <x-jet-dialog-modal wire:model="confirmingCategoriaAdd">
             <x-slot name="title">
-                {{ isset( $this->categoria->id) ? 'Editar Categoria' : 'Agregar Categoria Nuevo'}}
-            </x-slot>
+                {{ isset( $this->categoria->id) ? 'Editar Categoria' : 'Agregar '}}
+                {{ $nivel }}
+              </x-slot>
      
             <x-slot name="content">
+              <div class="col-span-6 sm:col-span-4 my-4">
+                <x-jet-label for="name" value="{{ __('Nivel') }}" />
+                <select wire:model="nivel"  class="outline-none border-gray-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full">
+                <option value="Grupo" selected>Grupo</option>
+                <option value="Sub Grupo">Sub Grupo</option>
+                <option value="Categoria">Categoria</option>
+                </select>
+              </div>
+             
+              @if($nivel == 'Sub Grupo' || $nivel == 'Categoria')
+                <div class="col-span-6 sm:col-span-4 my-4">
+                  <x-jet-label for="name" value="{{ __('Grupo') }}" />
+       
+                  <select  wire:model="grupo" class="outline-none border-gray-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full">
+                    <option value="" selected>Seleccionar un Grupo</option>
+                  @foreach($cat as $categoria)   
+                  @if($categoria->categoria_id == 0)
+                     <option value="{{ $categoria->id }}">{{ $categoria->name }}</option>
+                  @endif
+                     
+                  @endforeach
+                  </select>
+                </div>
+              @endif
+              @if($nivel == 'Categoria')
+                <div class="col-span-6 sm:col-span-4 my-4">
+                  <x-jet-label for="name" value="{{ __('Sub Grupo') }}" />
+            
+
+                  <select wire:model="subGrupo" class="outline-none border-gray-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full">
+                  @foreach($cat as $c)
+                    @if($c->nivel == "Sub Grupo" && $c->categoria_id == $this->grupo)
+                      <option value="">Seleccione un Sub Grupo</option>
+                      <option value="{{ $c->id }}"> {{ $c->name }} </option>
+                    @endif
+                  @endforeach
+                  </select>
+                </div>
+              @endif
                 <div class="col-span-6 sm:col-span-4">
                     <x-jet-label for="name" value="{{ __('Nombre') }}" />
                     <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="categoria.name" />
                     <x-jet-input-error for="categoria.name" class="mt-2" />
+                </div>
+                <div class="col-span-6 sm:col-span-4">
+                    <x-jet-label for="name" value="{{ __('Foto') }}" />
+                    <x-jet-input id="name" wire:model="photo" type="file" class="mt-1 block" />
+                    @error('photo') <span class="error">{{ $message }}</span> @enderror
+
+                    @if (!$photo_editar && $photo)
+                    Tu Foto:
+                      <img src="{{ $photo->temporaryUrl() }}" class="h-12 w-12 rounded-full">
+                     @endif
+                     @if($photo_editar)
+                     <img class="h-12 w-12 rounded-full" src="{{ 
+                      Storage::url($photo_editar) }}">
+                     
+                     @endif
                 </div>
     
                 <div class="col-span-6 sm:col-span-4 mt-4">

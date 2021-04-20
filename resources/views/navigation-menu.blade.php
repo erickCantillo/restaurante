@@ -20,7 +20,7 @@
                     </x-jet-nav-link>
 
                     <x-jet-nav-link href="/categorias" :active="request()->routeIs('categorias')">
-                        {{ __('Grupos') }}
+                        {{ __('Categorización') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="/productos" :active="request()->routeIs('productos')">
                         {{ __('Equipos') }}
