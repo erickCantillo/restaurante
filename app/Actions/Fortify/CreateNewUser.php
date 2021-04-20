@@ -41,6 +41,11 @@ class CreateNewUser implements CreatesNewUsers
                 'name' => $input['name'],
                 'identificacion' => $input['identificacion'],
                 'email' => $input['email'],
+                'empresa' => $input['empresa'],
+                'gerencia' => $input['gerencia'],
+                'lugar_trabajo' => $input['lugar_trabajo'],
+                'cargo' => $input['cargo'],
+                'celular' => $input['celular'],
                 'password' => Hash::make($input['password']),
             ]), function (User $user) {
                 $this->createTeam($user);
