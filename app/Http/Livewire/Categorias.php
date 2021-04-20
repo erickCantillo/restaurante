@@ -38,7 +38,9 @@ class Categorias extends Component
     public function render()
     {
         $cat = Categoria::where('user_id',  auth()->user()->id)->get(); //obteniedo el Registro sin paginar
-        $categorias = Categoria::where('user_id',  auth()->user()->id)->paginate(5); //Paginando el registro de 5 en 5
+        $categorias = Categoria::where('user_id',  auth()->user()->id)
+        ->orderBy('nivel')
+        ->paginate(5); //Paginando el registro de 5 en 5
         return view('livewire.categorias', ['categorias' => $categorias, 'cat' =>$cat]);
     }
 
@@ -62,6 +64,7 @@ class Categorias extends Component
         $this->grupo = '';
         $this->subGrupo = '';
         $this->photo_editar = '';
+        $this->photo = '';
         $this->confirmingCategoriaAdd = true;
     }
 
@@ -85,11 +88,14 @@ class Categorias extends Component
     public function saveCategoria() 
     {
         $this->validate();
-       
-        $photoPath = $this->photo->storeAS('public/categorizacion/',$this->nivel);
-
-        if(isset( $this->categoria->id)) {
+       if($this->photo){
+             $photoPath = $this->photo->store('public/categorizacion/');
+        }else{
+            $photoPath = $this->photo_editar;
+        }
         
+        if(isset( $this->categoria->id)) {
+            $this->categoria->imagen = $photoPath;
             $this->categoria->save();
             session()->flash('message', 'Categoria Guardada Exitosamente');
         } else {
