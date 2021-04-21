@@ -8,19 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Solicitud extends Model
 {
     use HasFactory;
-
-    // $table->integer('equipo_id')->index();
-    //         $table->integer('persona_id')->index();
-    //         $table->integer('proyecto_id')->index();
-    //         $table->string('nombre_equipo');
-    //         $table->integer('supervisor_id')->index();
-    //         $table->string('lugar_trabajo');
-    //         $table->integer('bloque');
-    //         $table->dateTime('fecha_realizacion');
-    //         $table->dateTime('fecha_respuesta')->nullable();
-    //         $table->string('estado')->default('SOLICITADO');
-    //         $table->string('observacion')->nullable();
-
+    
     protected $fillable = ['nombre_equipo', 'lugar_trabajo', 'bloque', 'fecha_realizacion', 'fecha_respuesta', 'estado', 'observacion'];
 
     public function equipo(){ 

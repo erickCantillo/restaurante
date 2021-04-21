@@ -13,7 +13,7 @@ class Categorias extends Component
     use WithFileUploads;
 
     public $active;
-    public $q;
+    public $q; 
     public $photo;
     public $categoria;
     public $nivel = "Grupo";
