@@ -66,40 +66,40 @@
                               </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                              @foreach($equipos as $equipo)
+                              @foreach($prestamos as $prestamo)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="flex-shrink-0 h-10 w-10">
                                             <img class="h-10 w-10 rounded-full" src="{{ 
-                                                Storage::url($equipo->imagen) }}">
+                                                Storage::url($prestamo->equipo->imagen) }}">
                                             </div>
                                             <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">{{ $equipo->categoria->name }}
+                                                <div class="text-sm font-medium text-gray-900">{{ $prestamo->equipo->categoria->name }}
                                                 </div>
-                                                <div class="text-sm text-gray-500">{{ $equipo->codigo_interno }} 
+                                                <div class="text-sm text-gray-500">{{ $prestamo->equipo->codigo_interno }} 
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-500">{{ $equipo->serial }}</div>
+                                    <div class="text-sm text-gray-500">{{ $prestamo->equipo->serial }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-500">{{ $equipo->fecha_prestamo }}</div>
+                                    <div class="text-sm text-gray-500">{{ $prestamo->fecha_prestamo }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-500">{{ $equipo->user_id->name }}</div>
+                                    <div class="text-sm text-gray-500">{{ $prestamo->user->name }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-500">{{ $equipo->user_id->cedula }}</div>
+                                    <div class="text-sm text-gray-500">{{ $prestamo->user->cedula }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-500">{{ $equipo->user_id->celular }}</div>
+                                    <div class="text-sm text-gray-500">{{ $prestamo->user->celular }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-500">{{ $equipo->supervisor_id }}</div>
+                                    <div class="text-sm text-gray-500">{{ $prestamo->supervisor->supervisor_id }}</div>
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
