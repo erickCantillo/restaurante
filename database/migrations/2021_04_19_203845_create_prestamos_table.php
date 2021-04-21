@@ -16,15 +16,15 @@ class CreatePrestamosTable extends Migration
         Schema::create('prestamos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('equipo_id')->index();
-            $table->integer('user_id')->index();
+            $table->integer('persona_id')->index();
             $table->integer('proyecto_id')->index();
             $table->integer('supervisor_id')->index();
+            $table->integer('almacenista_recibe')->index();
+            $table->integer('almacenista_entrega')->index();
             $table->string('lugar_trabajo');
             $table->string('sistema')->nullable();
             $table->integer('bloque');
             $table->string('observacion')->nullable();
-            $table->string('almacenista_recibe')->nullable();
-            $table->string('almacenista_entrega');
             $table->Date('fecha_prestamo');
             $table->Date('fecha_devolucion_prevista')->nullable();
             $table->date('fecha_devolucion')->nullable();

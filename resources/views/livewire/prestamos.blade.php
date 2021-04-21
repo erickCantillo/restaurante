@@ -33,6 +33,11 @@
                                 <option value="20"> 20 Por Pagina</option>
                               </select>
                             </div>
+                            <div class="mr-2 mt-3">
+                              <x-jet-button wire:click="confirmItemAdd" class="bg-green-400 hover:bg-blue-700">
+                                  Nuevo Prestamo
+                               </x-jet-button>
+                          </div>
                           </div>
                         @if($prestamos->count())
                           <table class="min-w-full divide-y divide-gray-200">
@@ -127,7 +132,67 @@
                 </div>
             </div>
         </div>
+        <x-jet-confirmation-modal wire:model="confirmingPrestamoDeletion">
+          <x-slot name="title">
+              {{ __('Eliminar Producto') }}
+          </x-slot>
+    
+          <x-slot name="content">
+              {{ __('Estas Seguro de Eliminar este Producto? ') }}
+          </x-slot>
+    
+          <x-slot name="footer">
+              <x-jet-secondary-button wire:click="$set('confirmingPrestamoDeletion', false)" wire:loading.attr="disabled">
+                  {{ __('Cancelar') }}
+              </x-jet-secondary-button>
+              <x-jet-danger-button class="ml-2" wire:click="deleteItem({{ $confirmingPrestamoDeletion }})" wire:loading.attr="disabled">
+                  {{ __('Si, Eliminar') }}
+              </x-jet-danger-button>
+          </x-slot>
+      </x-jet-confirmation-modal>
+    
+      <x-jet-dialog-modal wire:model="confirmingPrestamoAdd">
+          <x-slot name="title">
+              {{ isset( $this->prestamo->id) ? 'Editar Producto' : 'Agregar Producto Nuevo'}}
+          </x-slot>
+    
+          <x-slot name="content">
+              <div class="col-span-6 sm:col-span-4">
+                  <x-jet-label for="name" value="{{ __('Nombre') }}" />
+                  <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="prestamo" />
+                  <x-jet-input-error for="producto.name" class="mt-2" />
+              </div>
+    
+              <div class="col-span-6 sm:col-span-4 mt-4">
+                  <x-jet-label for="price" value="{{ __('precio') }}" />
+                  <x-jet-input id="price" type="text" class="mt-1 block w-full" wire:model.defer="prestamo" />
+                  <x-jet-input-error for="producto.price" class="mt-2" />
+              </div>
+              <div class="col-span-6 sm:col-span-4 mt-4">
+                  <x-jet-label for="categoria" value="{{ __('Categoria') }}" />
+                 
+                  <x-jet-input-error for="id_categoria" class="mt-2" />
+              </div>
+    
+              <div class="col-span-6 sm:col-span-4 mt-4">
+                  <label class="flex items-center">
+                      <input type="checkbox" wire:model.defer="producto.status" class="form-checkbox" />
+                      <span class="ml-2 text-sm text-gray-600">Activo</span>
+                  </label>
+              </div>
+          </x-slot>
+    
+          <x-slot name="footer">
+              <x-jet-secondary-button wire:click="$set('confirmingPrestamoAdd', false)" wire:loading.attr="disabled">
+                  {{ __('Cancelar') }}
+              </x-jet-secondary-button>
+    
+              <x-jet-danger-button  class="ml-2 text-indigo-600" wire:click="saveProducto()" wire:loading.attr="disabled">
+                  {{ __('Guardar') }}
+              </x-jet-danger-button>
+          </x-slot>
+      </x-jet-dialog-modal>
+    
     </div>
 
-   <!-- This example requires Tailwind CSS v2.0+ -->
-
+  
