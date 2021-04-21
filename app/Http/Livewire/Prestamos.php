@@ -7,6 +7,9 @@ use App\Models\Prestamo;
 
 class Prestamos extends Component
 {
+    public $search;
+    public $page;
+    public $perPage;
 
     public function render()
     {
