@@ -226,13 +226,13 @@
                 </div>
               @endif
                 <div class="col-span-6 sm:col-span-4">
-                    <x-jet-label for="equipo.codigo_interno" value="{{ __('Codigo Interno') }}" />
-                    <x-jet-input id="equipo.codigo_interno" type="text" class="mt-1 block w-full" wire:model.defer="equipo.codigo_interno" />
+                    <x-jet-label for="codigo_interno" value="{{ __('Codigo Interno') }}" />
+                    <x-jet-input id="codigo_interno" type="text" class="mt-1 block w-full" wire:model.defer="equipo.codigo_interno" />
                     <x-jet-input-error for="equipo.codigo_interno" class="mt-2" />
                 </div>
                 <div class="col-span-6 sm:col-span-4">
-                    <x-jet-label for="equipo.serial" value="{{ __('Serial') }}" />
-                    <x-jet-input id="equipo.serial" type="text" class="mt-1 block w-full" wire:model.defer="equipo.serial" />
+                    <x-jet-label for="serial" value="{{ __('Serial') }}" />
+                    <x-jet-input id="serial" type="text" class="mt-1 block w-full" wire:model.defer="equipo.serial" />
                     <x-jet-input-error for="equipo.serial" class="mt-2" />
                 </div>
                 <div class="col-span-6 sm:col-span-4">

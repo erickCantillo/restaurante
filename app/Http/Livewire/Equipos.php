@@ -28,24 +28,14 @@ class Equipos extends Component
 
     protected $rules = [
         'equipo.categoria' => 'required|numeric',
-        'equipo.codigo_interno' => 'required|unique:equipos',
-        'equipo.serial' => 'required|unique:equipos',
-        'equipo.codigo_SAP' => 'required',
-        'equipo.marca' => 'required',
-        'equipo.valor_compra' => 'required|numeric',
-        'equipo.ubicacion' => 'required',
-        'equipo.fecha_ingreso' => 'required|date',
-        'equipo.valor_dia' => 'required|numeric',
-        'equipo.valor_dia' => 'required|numeric',
-        'equipo.responsable' => 'required|numeric',
-        'equipo.observaciones' => 'required',
-        'equipo.tipo' => 'required',
+        'equipo.codigo_interno' => 'required|unique:equipos,codigo_interno',
+        'equipo.serial' => 'required|unique:equipos,serial',
         'photo' => 'image|file',
         'grupo' => 'required'
          
     ];
     protected $messages= [
-        'categoria.name.required' => 'Este campo es Obligatorio',
+       // 'categoria.name.required' => 'Este campo es Obligatorio',
 
     ];
 
@@ -96,7 +86,7 @@ class Equipos extends Component
     {
         $this->validate();
        if($this->photo){
-             $photoPath = $this->photo->store('public/Equipos/');
+             $photoPath = $this->photo->store('public/Equipos');
         }else{
             $photoPath = $this->photo_editar;
         }
@@ -111,7 +101,6 @@ class Equipos extends Component
                     'codigo_interno' => $this->equipo['codigo_interno'],
                     'serial' => $this->equipo['serial'],
                     'imagen' => $photoPath,
-                    
                 ]);
                 session()->flash('message', 'categoria Añadida Exitosamente');
         }
