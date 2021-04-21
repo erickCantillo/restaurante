@@ -83,32 +83,51 @@
                                       <div class="text-sm font-medium text-gray-900">
                                       {{ $equipo->categoria->name }}
                                       </div>
+                                      <div class="text-sm text-gray-500">
+                                        {{ $equipo->codigo_interno }} 
+                                        </div>
                                     </div>
                                   </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                   <div class="flex items-center">
-                                
                                     <div class="ml-4">
                                       <div class="text-sm font-medium text-gray-900">
-                                     {{-- {{ $categoria->nivel }}  --}}
+                                     {{ $equipo->serial}}
                                       </div>
                                     </div>
                                   </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                   <div class="flex items-center">
-                                
                                     <div class="ml-4">
                                       <div class="text-sm font-medium text-gray-900">
-                                     {{-- {{ $categoria->categoria_id == 0 ? 'Sin Padre' : $categoria->padre->name}}  --}}
+                                        {{ $equipo->marca}}
                                       </div>
                                     </div>
                                   </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                      <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">
+                                          {{ $equipo->ubicacion}}
+                                        </div>
+                                      </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                      <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">
+                                          {{ $equipo->tipo}}
+                                        </div>
+                                      </div>
+                                    </div>
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                  {{-- <div class="text-sm text-gray-500">{{ $categoria->status ? 'Activo' : 'No-Activo'}}</div> --}}
+                                  <div class="text-sm text-gray-500">{{ $equipo->estado ? 'Activo' : 'No-Activo'}}</div>
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

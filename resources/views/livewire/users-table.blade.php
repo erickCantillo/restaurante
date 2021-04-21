@@ -30,21 +30,34 @@
                               <option value="20"> 20 Por Pagina</option>
                               </select>
                             </div>
-                            <div class="mr-2 mt-3">
-                                <x-jet-button wire:click="" class="bg-red-500 hover:bg-blue-700">
-                                    Add New Item
-                                </x-jet-button>
-                            </div>
                           </div>
                         @if($users->count())
                           <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                               <tr>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                  Name
+                                  Nombre
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                  Identificación
+                                </th>
+                                {{-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Teams
+                                </th> --}}
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                  Empresa
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                  Gerencia
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                  Lugar trabajo
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                  Cargo
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                  Celular
                                 </th>
                                
                                 <th scope="col" class="relative px-6 py-3">
@@ -72,8 +85,26 @@
                                   </div>
                                 </td>
 
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                {{-- <td class="px-6 py-4 whitespace-nowrap">
                                   <div class="text-sm text-gray-500">{{ $user->allTeams()->pluck('name')->join(', ') }}</div>
+                                </td> --}}
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="text-sm text-gray-500">{{ $user->identificacion }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="text-sm text-gray-500">{{ $user->empresa }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="text-sm text-gray-500">{{ $user->gerencia }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="text-sm text-gray-500">{{ $user->lugar_trabajo }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="text-sm text-gray-500">{{ $user->cargo }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="text-sm text-gray-500">{{ $user->celular }}</div>
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
