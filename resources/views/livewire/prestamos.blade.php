@@ -157,6 +157,49 @@
           </x-slot>
     
           <x-slot name="content">
+            <x-jet-label for="price" value="{{ __('Categoria') }}" />
+            <div class="relative mt-3 md:mt-0" x-data="{ isOpen: true }" @click.away="isOpen = false">
+              
+              <x-jet-input
+                  wire:model.debounce.500ms="search"
+                  type="search"
+                  class="bg-white rounded-md w-full px-4 pl-8 py-1 focus:outline-none focus:shadow-outline" placeholder="Search (Press '/' to focus)"
+                  x-ref="search"
+                  @keydown.window="
+                      if (event.keyCode === 191) {
+                          event.preventDefault();
+                          $refs.search.focus();
+                      }
+                  "
+              />
+              <div class="absolute top-0">
+                  <svg class="fill-current w-4 text-gray-500 mt-2 ml-2" viewBox="0 0 24 24"><path class="heroicon-ui" d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+              </div>
+          
+              <div wire:loading class="spinner top-0 right-0 mr-4 mt-3"></div>
+          
+               @if (strlen($search) >= 2) 
+                  <div class="z-50 absolute bg-white text-sm rounded w-full mt-4"
+                      x-show.transition.opacity="isOpen">
+                         @if ($searchResults->count() > 0) 
+                          <ul>
+                            @foreach ($searchResults as $result)
+                                  <li class="border-b border-gray-300">
+                                      <x-jet-button wire:click="$set('isOpen', false)" class="hover:bg-blue-200 px-3 py-3 flex items-center w-full transition ease-in-out duration-150">
+                                     @if ($result['imagen'])
+                                          <img src="{{ Storage::url($result->imagen)}}" alt="poster" class="w-8">
+                                      @endif
+                                      <span class="ml-4">{{ $result['name'] }}</span>
+                                      </x-jet-button>
+                                  </li>
+                              @endforeach 
+                          </ul>
+                      @else
+                          <div class="px-3 py-3">No hay Resultados </div>
+                       @endif 
+                  </div>
+              @endif
+          </div>
               <div class="col-span-6 sm:col-span-4">
                   <x-jet-label for="name" value="{{ __('Nombre') }}" />
                   <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="prestamo" />

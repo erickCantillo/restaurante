@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Prestamo;
 use App\Models\Equipo;
+use App\Models\Categoria;
 
 class Prestamos extends Component
 {
@@ -12,14 +13,21 @@ class Prestamos extends Component
     public $page;
     public $perPage;
     public $prestamo;
+    public $isOpen = false;
     public $confirmingPrestamoAdd = false;
     public $confirmingPrestamoDeletion = false;
 
     public function render()
     {
+        $searchResults = [];
+        if(strlen($this->search) >= 2){
+            $searchResults = Categoria::where('nivel', 'Categoria')->where('name', 'like', '%'.$this->search . '%')->get();
+        }
+
         $prestamos = Prestamo::get();
         return view('livewire.prestamos',[
             'prestamos' => $prestamos,
+            'searchResults' => $searchResults,
         ]);
     }
 
