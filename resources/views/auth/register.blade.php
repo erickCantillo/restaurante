@@ -8,8 +8,8 @@
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
-
-            <div>
+            <div class="flex">
+            <div class="mt-4 px-1 pr-4">
                 <x-jet-label for="name" value="{{ __('Name') }}" />
                 <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
@@ -18,8 +18,9 @@
                 <x-jet-label for="identificacion" value="{{ __('Identificación') }}" />
                 <x-jet-input id="identificacion" class="block mt-1 w-full" type="text" name="identificacion" :value="old('identificacion')" required />
             </div>
-            
-            <div class="mt-4">
+        </div>
+        <div class="flex">
+            <div class="mt-4 px-1 pr-4">
                 <x-jet-label for="empresa" value="{{ __('Empresa') }}" />
                 <x-jet-input id="empresa" class="block mt-1 w-full" type="text" name="empresa" :value="old('empresa')" required /> 
             </div>
@@ -28,8 +29,9 @@
                 <x-jet-label for="gerencia" value="{{ __('Gerencia') }}" />
                 <x-jet-input id="gerencia" class="block mt-1 w-full" type="text" name="gerencia" :value="old('gerencia')" required /> 
             </div>
-
-            <div class="mt-4">
+        </div>
+        <div class="flex">
+            <div class="mt-4 px-1 pr-4">
                 <x-jet-label for="lugar_trabajo" value="{{ __('Lugar trabajo') }}" />
                 <x-jet-input id="lugar_trabajo" class="block mt-1 w-full" type="text" name="lugar_trabajo" :value="old('lugar_trabajo')" required /> 
             </div>
@@ -38,8 +40,9 @@
                 <x-jet-label for="cargo" value="{{ __('Cargo') }}" />
                 <x-jet-input id="cargo" class="block mt-1 w-full" type="text" name="cargo" :value="old('cargo')" required /> 
             </div>
-
-            <div class="mt-4">
+        </div>
+        <div class="flex">
+            <div class="mt-4 px-1 pr-4">
                 <x-jet-label for="celular" value="{{ __('Celular') }}" />
                 <x-jet-input id="celular" class="block mt-1 w-full" type="text" name="celular" :value="old('celular')" required /> 
             </div>
@@ -48,8 +51,9 @@
                 <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
-
-            <div class="mt-4">
+        </div>
+        <div class="flex">
+            <div class="mt-4 px-1 pr-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
@@ -58,7 +62,7 @@
                 <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
                 <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
-
+        </div>
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
                     <x-jet-label for="terms">

@@ -22,13 +22,14 @@ class Equipos extends Component
     public $photo;
     public $grupo;
     public $subGrupo;
+    public $categoria;
     public $confirmingEquipoAdd = false;
     public $confirmingEquipoDeletion = false;
 
     protected $rules = [
-        'equipo.categoria' => 'required|numeric|min:4',
-        'equipo.codigo_interno' => 'required|numeric|unique:equipos',
-        'equipo.serial' => 'required|numeric|unique:equipos',
+        'equipo.categoria' => 'required|numeric',
+        'equipo.codigo_interno' => 'required|unique:equipos',
+        'equipo.serial' => 'required|unique:equipos',
         'equipo.codigo_SAP' => 'required',
         'equipo.marca' => 'required',
         'equipo.valor_compra' => 'required|numeric',
@@ -53,8 +54,7 @@ class Equipos extends Component
        //obteniedo el Registro sin paginar
         $equipos = Equipo::orderBy('categoria_id')
         ->paginate(5); //Paginando el registro de 5 en 5
-        
-        $cat = Categoria::where('user_id',  auth()->user()->id)->get();
+        $cat = Categoria::get();
         
         return view('livewire.equipos',[
             'equipos' => $equipos,
@@ -90,6 +90,34 @@ class Equipos extends Component
         $this->equipo = $item;
         $this->photo_editar = $item->imagen;
         $this->confirmingEquipoAdd = true;
+    }
+
+    public function saveCategoria() 
+    {
+        $this->validate();
+       if($this->photo){
+             $photoPath = $this->photo->store('public/Equipos/');
+        }else{
+            $photoPath = $this->photo_editar;
+        }
+        
+        if(isset( $this->equipo->id)) {
+            $this->equipo->imagen = $photoPath;
+            $this->equipo->save();
+            session()->flash('message', 'Equipo Guardado Exitosamente');
+        } else {
+                auth()->user()->equipos()->create([
+                    'categoria_id' => $this->equipo['categoria'],
+                    'codigo_interno' => $this->equipo['codigo_interno'],
+                    'serial' => $this->equipo['serial'],
+                    'imagen' => $photoPath,
+                    
+                ]);
+                session()->flash('message', 'categoria Añadida Exitosamente');
+        }
+ 
+        $this->confirmingCategoriaAdd = false;
+ 
     }
 
 }

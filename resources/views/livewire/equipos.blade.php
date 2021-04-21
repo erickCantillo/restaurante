@@ -174,37 +174,54 @@
                 <option value="" selected>Seleccione un Grupo</option>
                   @foreach($categorias as $categoria)
                     @if($categoria->nivel == 'Grupo')
-                      <option value="Sub Grupo">{{ $categoria->name }}</option>
+                      <option value="{{ $categoria->id }}">{{ $categoria->name }}</option>
                     @endif
                   @endforeach
                 </select>
               </div>
+
               @if($grupo)
                 <div class="col-span-6 sm:col-span-4 my-4">
                   <x-jet-label for="name" value="{{ __('Sub Grupo') }}" />
                   <select wire:model="subGrupo"  class="outline-none border-gray-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full">
                   <option value="" selected>Seleccione un Sub Grupo</option>
                     @foreach($categorias as $categoria)
-                      @if($categoria->nivel == 'Sub Grupo')
-                        <option value="Sub Grupo">{{ $categoria->name }}</option>
+                      @if($categoria->nivel == 'Sub Grupo' && $categoria->categoria_id == $grupo)
+                        <option value="{{ $categoria->id }}">{{ $categoria->name }}</option>
                       @endif
                     @endforeach
                   </select>
                 </div>
               @endif
-             
-            
-            
+
+              @if($subGrupo)
+                <div class="col-span-6 sm:col-span-4 my-4">
+                  <x-jet-label for="name" value="{{ __('Sub Grupo') }}" />
+                  <select wire:model="equipo.categoria"  class="outline-none border-gray-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full">
+                  <option value="" selected>Seleccione un Sub Grupo</option>
+                    @foreach($categorias as $categoria)
+                      @if($categoria->nivel == 'Categoria' && $categoria->categoria_id == $subGrupo)
+                        <option value="{{ $categoria->id }}">{{ $categoria->name }}</option>
+                      @endif
+                    @endforeach
+                  </select>
+                  <x-jet-input-error for="equipo.categoria" class="mt-2" />
+                </div>
+              @endif
                 <div class="col-span-6 sm:col-span-4">
-                    <x-jet-label for="name" value="{{ __('Nombre') }}" />
-                    <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="categoria.name" />
-                    <x-jet-input-error for="categoria.name" class="mt-2" />
+                    <x-jet-label for="equipo.codigo_interno" value="{{ __('Codigo Interno') }}" />
+                    <x-jet-input id="equipo.codigo_interno" type="text" class="mt-1 block w-full" wire:model.defer="equipo.codigo_interno" />
+                    <x-jet-input-error for="equipo.codigo_interno" class="mt-2" />
+                </div>
+                <div class="col-span-6 sm:col-span-4">
+                    <x-jet-label for="equipo.serial" value="{{ __('Serial') }}" />
+                    <x-jet-input id="equipo.serial" type="text" class="mt-1 block w-full" wire:model.defer="equipo.serial" />
+                    <x-jet-input-error for="equipo.serial" class="mt-2" />
                 </div>
                 <div class="col-span-6 sm:col-span-4">
                     <x-jet-label for="name" value="{{ __('Foto') }}" />
                     <x-jet-input id="photo" name="photo" wire:model="photo" type="file" class="mt-1 block" />
-                    {{-- @error('photo') <span class="error">{{ $message }}</span> @enderror
-
+                    @error('photo') <span class="error">{{ $message }}</span> @enderror
                     @if ($photo)
                     Tu Foto:
                       <img src="{{ $photo->temporaryUrl() }}" class="h-12 w-12 rounded-full">
@@ -212,24 +229,17 @@
                      @if($photo_editar)
                      <img class="h-12 w-12 rounded-full" src="{{ 
                       Storage::url($photo_editar) }}">
-                     @endif --}}
-                </div>
-    
-                <div class="col-span-6 sm:col-span-4 mt-4">
-                    <label class="flex items-center">
-                        <input type="checkbox" wire:model.defer="categoria.status" class="form-checkbox" />
-                        <span class="ml-2 text-sm text-gray-600">Activo</span>
-                    </label>
+                     @endif
                 </div>
             </x-slot>
      
             <x-slot name="footer">
-                <x-jet-secondary-button wire:click="$set('confirmingCategoriaAdd', false)" wire:loading.attr="disabled">
+                <x-jet-secondary-button wire:click="$set('confirmingEquipoAdd', false)" wire:loading.attr="disabled">
                     {{ __('Cancelar') }}
                 </x-jet-secondary-button>
      
                 <x-jet-danger-button  class="ml-2 text-indigo-600" wire:click="saveCategoria()" wire:loading.attr="disabled">
-                    {{ __('Guardar') }}
+                    {{ __('Guardar y Continuar') }}
                 </x-jet-danger-button>
             </x-slot>
         </x-jet-dialog-modal>
