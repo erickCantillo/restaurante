@@ -80,7 +80,6 @@ class Proyectos extends Component
         }
         
         if(isset( $this->proyecto->id)) {
-            $this->proyecto->nombre = $nombre;
             $this->proyecto->imagen = $photoPath;
             $this->proyecto->save();
             session()->flash('message', 'Proyecto Guardado Exitosamente');

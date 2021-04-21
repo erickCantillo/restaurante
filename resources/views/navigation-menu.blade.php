@@ -18,7 +18,9 @@
                     <x-jet-nav-link href="/users" :active="request()->routeIs('users')">
                         {{ __('Personal') }}
                     </x-jet-nav-link>
-
+                    <x-jet-nav-link href="/proyectos" :active="request()->routeIs('proyectos')">
+                        {{ __('Proyectos') }}
+                    </x-jet-nav-link>
                     <x-jet-nav-link href="/categorias" :active="request()->routeIs('categorias')">
                         {{ __('Categorización') }}
                     </x-jet-nav-link>
@@ -31,7 +33,7 @@
                     <x-jet-nav-link href="/solicitudes" :active="request()->routeIs('solicitudes')">
                         {{ __('Solicitudes') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="/solicitudes" :active="request()->routeIs('solicitudes')">
+                    <x-jet-nav-link href="/reportes" :active="request()->routeIs('reportes')">
                         {{ __('Reportes') }}
                     </x-jet-nav-link>
                 </div> 

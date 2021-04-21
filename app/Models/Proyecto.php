@@ -9,7 +9,7 @@ class Proyecto extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre'];
+    protected $fillable = ['nombre', 'imagen'];
   
     public function scopeActive($query) 
     {
