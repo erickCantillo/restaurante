@@ -24,7 +24,6 @@
                           <div class="flex bg-white px-4 py-0  sm:px-6 justify-between">
                            
                             <input 
-                            
                             type="search" 
                             placeholder="Buscar..." 
                             class="form-input leading-tight focus:outline-none focus:shadow-outline rounded-md shadow-ms m-2 block content-center ">
