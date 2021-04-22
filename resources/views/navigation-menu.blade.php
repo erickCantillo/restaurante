@@ -186,6 +186,10 @@
             <x-jet-responsive-nav-link href="/solicitudes" :active="request()->routeIs('solicitudes')">
                 {{ __('Solicitudes') }}
             </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="/reportes" :active="request()->routeIs('reportes')">
+                {{ __('Reportes') }}
+            </x-jet-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

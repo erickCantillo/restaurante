@@ -38,4 +38,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/equipos', Equipos::class)
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/proyectos', Proyectos::class)->name('proyectos');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/solicitudes', solicituds::class)->name('solicitudes');
+Route::middleware(['auth:sanctum', 'verified'])->get('/solicitudes', Solicituds::class)->name('solicituds');
+
+// Route::middleware(['auth:sanctum', 'verified'])->get('/reportes', Reportes::class)->name('reportes');
