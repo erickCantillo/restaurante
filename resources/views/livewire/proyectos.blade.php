@@ -33,7 +33,7 @@
                               </select>
                             </div>
                             <div class="mr-2 mt-3">
-                                <x-jet-button wire:click="confirmItemAdd" class="bg-green-400 hover:bg-blue-700">
+                                <x-jet-button wire:click="confirmItemAdd" class="bg-indigo-200 hover:bg-blue-700">
                                     Nuevo Proyecto
                                  </x-jet-button>
                             </div>
@@ -81,11 +81,11 @@
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                  <x-jet-button w class="bg-orange-500 hover:bg-orange-700">
+                                  <x-jet-button w class="bg-orange-500 hover:bg-orange-700" wire:click="confirmProyectoEdit( {{ $proyecto->id}})">
                                     Editar
                                   </x-jet-button>
 
-                                  <x-jet-danger-button  wire:loading.attr="disabled">
+                                  <x-jet-danger-button  wire:loading.attr="disabled" wire:click="confirmProyectoDeletion( {{ $proyecto->id}})">
                                     Eliminar
                                   </x-jet-danger-button>
                                 </td>
@@ -108,7 +108,7 @@
             </div>
         </div>
 
-        <x-jet-confirmation-modal wire:model="confirmingProyectoAdd">
+        <x-jet-confirmation-modal wire:model="confirmingProyectoDeletion">
           <x-slot name="title">
               {{ __('Eliminar Proyecto') }}
           </x-slot>
@@ -122,7 +122,7 @@
                   {{ __('Cancelar') }}
               </x-jet-secondary-button>
    
-              <x-jet-danger-button class="ml-2"  wire:loading.attr="disabled">
+              <x-jet-danger-button class="ml-2"  wire:loading.attr="disabled" wire:click="deleteProyecto({{ $confirmingProyectoDeletion }})">
                   {{ __('Si, Eliminar') }}
               </x-jet-danger-button>
           </x-slot>
@@ -163,7 +163,7 @@
                 </x-jet-secondary-button>
      
                 <x-jet-danger-button  class="ml-2 text-indigo-600" wire:click="saveProyecto()" wire:loading.attr="disabled">
-                    {{ __('Guardar y Continuar') }}
+                    {{ __('Guardar') }}
                 </x-jet-danger-button>
             </x-slot>
         </x-jet-dialog-modal>

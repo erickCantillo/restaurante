@@ -1,7 +1,7 @@
 <div>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Users') }}
+            {{ __('Personal') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -13,20 +13,14 @@
                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                           <div class="flex bg-white px-4 py-0  sm:px-6 justify-between">
                            
-                            <input 
-                            wire:model.debounce.500ms="search"
-                            type="search" 
-                            placeholder="Buscar..." 
-                            class="form-input leading-tight focus:outline-none focus:shadow-outline rounded-md shadow-ms m-2 block content-center ">
+                            <input wire:model.debounce.500ms="search" type="search" placeholder="Buscar..." class="form-input leading-tight focus:outline-none focus:shadow-outline rounded-md shadow-ms m-2 block content-center ">
                            
-                     
-
                             <div wire:model="perPage" class="form-input rounded-md shadow-ms m-2 block">
                               <select class="outline-none rounded-md shadow text-gray-500 text-sm ml-6">
-                              <option value="5"> 5 Por Pagina</option>
-                              <option value="10"> 10 Por Pagina</option>
-                              <option value="15"> 15 Por Pagina</option>
-                              <option value="20"> 20 Por Pagina</option>
+                                <option value="5"> 5 Por Pagina</option>
+                                <option value="10"> 10 Por Pagina</option>
+                                <option value="15"> 15 Por Pagina</option>
+                                <option value="20"> 20 Por Pagina</option>
                               </select>
                             </div>
                           </div>
@@ -128,7 +122,6 @@
                       </div>
                     </div>
                   </div>
-                  
                 </div>
             </div>
         </div>

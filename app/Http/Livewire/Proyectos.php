@@ -13,6 +13,7 @@ class Proyectos extends Component
     use WithFileUploads;
 
     public $nombre;
+    public $proyecto;
     public $photo;
     public $photo_editar;
 
@@ -31,7 +32,7 @@ class Proyectos extends Component
 
     public function render()
     {
-        $proyectos = Proyecto::orderBy('nivel')
+        $proyectos = Proyecto::orderBy('nombre')
         ->paginate(5); //Paginando el registro de 5 en 5
         return view('livewire.proyectos', ['proyectos' => $proyectos,]);
     }
@@ -49,7 +50,7 @@ class Proyectos extends Component
     }
 
     
-    public function confirmProyectoAdd() 
+    public function confirmItemAdd() 
     {
         $this->reset(['proyecto']);
         $this->nombre = '';
@@ -68,7 +69,6 @@ class Proyectos extends Component
 
         $this->confirmingProyectoAdd = true;
     }
-
     
     public function saveProyecto() 
     {
@@ -83,7 +83,14 @@ class Proyectos extends Component
             $this->proyecto->imagen = $photoPath;
             $this->proyecto->save();
             session()->flash('message', 'Proyecto Guardado Exitosamente');
-        } 
+        }else{
+            Proyecto::create([
+                'nombre' => $this->proyecto['nombre'],
+                'imagen' => $photoPath,
+            ]);
+
+            session()->flash('message', 'Proyecto Agregado Exitosamente');
+        }
  
         $this->confirmingProyectoAdd = false;
  
