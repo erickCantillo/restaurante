@@ -35,7 +35,7 @@
                               </select>
                             </div>
                             <div class="mr-2 mt-3">
-                                <x-jet-button wire:click="confirmItemAdd" class="bg-green-400 hover:bg-blue-700">
+                                <x-jet-button wire:click="confirmItemAdd" class="bg-indigo-200 hover:bg-blue-700">
                                     Nuevo Equipo
                                  </x-jet-button>
                             </div>
