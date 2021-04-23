@@ -17,7 +17,7 @@ class CreateEquiposTable extends Migration
             $table->increments('id');
             $table->integer('categoria_id')->index();
             $table->string('codigo_interno')->unique();
-            $table->string('imagen');
+            $table->string('imagen')->nullable();
             $table->string('serial')->unique();
             $table->string('codigo_SAP')->unique()->nullable();
             $table->string('valor_compra')->nullable();
