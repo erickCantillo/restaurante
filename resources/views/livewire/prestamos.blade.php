@@ -1,9 +1,9 @@
 <div>
-    <x-slot name="header">
+    {{-- <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Prestamos') }}
         </h2>
-    </x-slot>
+    </x-slot> --}}
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -33,7 +33,7 @@
                               </select>
                             </div>
                             <div class="mr-2 mt-3">
-                              <x-jet-button wire:click="confirmItemAdd" class="bg-green-400 hover:bg-blue-700">
+                              <x-jet-button wire:click="confirmItemAdd" class="bg-indigo-200 hover:bg-blue-700">
                                   Nuevo Prestamo
                                </x-jet-button>
                           </div>
