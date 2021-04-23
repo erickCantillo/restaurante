@@ -35,9 +35,9 @@
                               </select>
                             </div>
                             <div class="mr-2 mt-3">
-                                <x-jet-button wire:click="confirmItemAdd" class="bg-green-400 hover:bg-blue-700">
+                                <a href="agregarEqupo" class="bg-green-400 hover:bg-blue-700">
                                     Nuevo Equipo
-                                 </x-jet-button>
+                                </a>
                             </div>
                           </div>
                          @if($equipos->count()) 
@@ -129,9 +129,9 @@
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                  <x-jet-button w class="bg-orange-500 hover:bg-orange-700">
+                                  <a href="agregarEqupo?id={{ $equipo->id }}" class="bg-orange-500 hover:bg-orange-700 text-sm text-indigo-500 uppercase mr-2">
                                     Editar
-                                </x-jet-button>
+                                  </a>
 
                                   <x-jet-danger-button  wire:loading.attr="disabled">
                                     Eliminar
@@ -178,89 +178,7 @@
       </x-jet-confirmation-modal>
 
 
-        <x-jet-dialog-modal wire:model="confirmingEquipoAdd">
-            <x-slot name="title">
-                {{-- {{ isset( $this->categoria->id) ? 'Editar Categoria' : 'Agregar '}}
-                {{ $nivel }} --}}
-              </x-slot>
-     
-            <x-slot name="content">
-              <div class="col-span-6 sm:col-span-4 my-4">
-                <x-jet-label for="name" value="{{ __('Grupo') }}" />
-                <select wire:model="grupo" class="outline-none border-gray-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full">
-                <option value="" selected>Seleccione un Grupo</option>
-                  @foreach($categorias as $categoria)
-                    @if($categoria->nivel == 'Grupo')
-                      <option value="{{ $categoria->id }}">{{ $categoria->name }}</option>
-                    @endif
-                  @endforeach
-                </select>
-              </div>
-
-              @if($grupo)
-                <div class="col-span-6 sm:col-span-4 my-4">
-                  <x-jet-label for="name" value="{{ __('Sub Grupo') }}" />
-                  <select wire:model="subGrupo"  class="outline-none border-gray-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full">
-                  <option value="" selected>Seleccione un Sub Grupo</option>
-                    @foreach($categorias as $categoria)
-                      @if($categoria->nivel == 'Sub Grupo' && $categoria->categoria_id == $grupo)
-                        <option value="{{ $categoria->id }}">{{ $categoria->name }}</option>
-                      @endif
-                    @endforeach
-                  </select>
-                </div>
-              @endif
-
-              @if($subGrupo)
-                <div class="col-span-6 sm:col-span-4 my-4">
-                  <x-jet-label for="name" value="{{ __('Sub Grupo') }}" />
-                  <select wire:model="equipo.categoria"  class="outline-none border-gray-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full">
-                  <option value="" selected>Seleccione un Sub Grupo</option>
-                    @foreach($categorias as $categoria)
-                      @if($categoria->nivel == 'Categoria' && $categoria->categoria_id == $subGrupo)
-                        <option value="{{ $categoria->id }}">{{ $categoria->name }}</option>
-                      @endif
-                    @endforeach
-                  </select>
-                  <x-jet-input-error for="equipo.categoria" class="mt-2" />
-                </div>
-              @endif
-                <div class="col-span-6 sm:col-span-4">
-                    <x-jet-label for="codigo_interno" value="{{ __('Codigo Interno') }}" />
-                    <x-jet-input id="codigo_interno" type="text" class="mt-1 block w-full" wire:model.defer="equipo.codigo_interno" />
-                    <x-jet-input-error for="equipo.codigo_interno" class="mt-2" />
-                </div>
-                <div class="col-span-6 sm:col-span-4">
-                    <x-jet-label for="serial" value="{{ __('Serial') }}" />
-                    <x-jet-input id="serial" type="text" class="mt-1 block w-full" wire:model.defer="equipo.serial" />
-                    <x-jet-input-error for="equipo.serial" class="mt-2" />
-                </div>
-                <div class="col-span-6 sm:col-span-4">
-                    <x-jet-label for="name" value="{{ __('Foto') }}" />
-                    <x-jet-input id="photo" name="photo" wire:model="photo" type="file" class="mt-1 block" />
-                    @error('photo') <span class="error">{{ $message }}</span> @enderror
-                    @if ($photo)
-                    Tu Foto:
-                      <img src="{{ $photo->temporaryUrl() }}" class="h-12 w-12 rounded-full">
-                     @endif
-                     @if($photo_editar)
-                     <img class="h-12 w-12 rounded-full" src="{{ 
-                      Storage::url($photo_editar) }}">
-                     @endif
-                </div>
-            </x-slot>
-     
-            <x-slot name="footer">
-                <x-jet-secondary-button wire:click="$set('confirmingEquipoAdd', false)" wire:loading.attr="disabled">
-                    {{ __('Cancelar') }}
-                </x-jet-secondary-button>
-     
-                <x-jet-danger-button  class="ml-2 text-indigo-600" wire:click="saveCategoria()" wire:loading.attr="disabled">
-                    {{ __('Guardar y Continuar') }}
-                </x-jet-danger-button>
-            </x-slot>
-        </x-jet-dialog-modal>
-
+   
     </div> 
 
 

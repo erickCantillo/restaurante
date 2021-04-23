@@ -3,7 +3,6 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Prestamos') }}
         </h2>
-       
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -157,72 +156,39 @@
           </x-slot>
     
           <x-slot name="content">
-            <x-jet-label for="price" value="{{ __('Categoria') }}" />
-            <div class="relative mt-3 md:mt-0" x-data="{ isOpen: true }" @click.away="isOpen = false">
-              
-              <x-jet-input
-                  wire:model.debounce.500ms="search"
-                  type="search"
-                  class="bg-white rounded-md w-full px-4 pl-8 py-1 focus:outline-none focus:shadow-outline" placeholder="Search (Press '/' to focus)"
-                  x-ref="search"
-                  @keydown.window="
-                      if (event.keyCode === 191) {
-                          event.preventDefault();
-                          $refs.search.focus();
-                      }
-                  "
-              />
-              <div class="absolute top-0">
-                  <svg class="fill-current w-4 text-gray-500 mt-2 ml-2" viewBox="0 0 24 24"><path class="heroicon-ui" d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
-              </div>
-          
-              <div wire:loading class="spinner top-0 right-0 mr-4 mt-3"></div>
-          
-               @if (strlen($search) >= 2) 
-                  <div class="z-50 absolute bg-white text-sm rounded w-full mt-4"
-                      x-show.transition.opacity="isOpen">
-                         @if ($searchResults->count() > 0) 
-                          <ul>
-                            @foreach ($searchResults as $result)
-                                  <li class="border-b border-gray-300">
-                                      <x-jet-button wire:click="$set('isOpen', false)" class="hover:bg-blue-200 px-3 py-3 flex items-center w-full transition ease-in-out duration-150">
-                                     @if ($result['imagen'])
-                                          <img src="{{ Storage::url($result->imagen)}}" alt="poster" class="w-8">
-                                      @endif
-                                      <span class="ml-4">{{ $result['name'] }}</span>
-                                      </x-jet-button>
-                                  </li>
-                              @endforeach 
-                          </ul>
-                      @else
-                          <div class="px-3 py-3">No hay Resultados </div>
-                       @endif 
-                  </div>
-              @endif
-          </div>
               <div class="col-span-6 sm:col-span-4">
-                  <x-jet-label for="name" value="{{ __('Nombre') }}" />
+                  <x-jet-label for="name" value="{{ __('Codigo Interno del Equipo') }}" />
                   <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="prestamo" />
                   <x-jet-input-error for="producto.name" class="mt-2" />
               </div>
     
               <div class="col-span-6 sm:col-span-4 mt-4">
-                  <x-jet-label for="price" value="{{ __('precio') }}" />
-                  <x-jet-input id="price" type="text" class="mt-1 block w-full" wire:model.defer="prestamo" />
-                  <x-jet-input-error for="producto.price" class="mt-2" />
+                  <x-jet-label for="codigo" value="{{ __('Codigo del Equipo') }}" />
+                  <x-jet-input id="codigo" type="text" class="mt-1 block w-full" wire:model.defer="prestamo.codigo_interno" />
+                  <x-jet-input-error for="prestamo.codigo_interno" class="mt-2" />
               </div>
               <div class="col-span-6 sm:col-span-4 mt-4">
-                  <x-jet-label for="categoria" value="{{ __('Categoria') }}" />
-                 
-                  <x-jet-input-error for="id_categoria" class="mt-2" />
+                  <x-jet-label for="cedula" value="{{ __('Identificación del Operario') }}" />
+                  <x-jet-input id="cedula" type="number" class="mt-1 block w-full" wire:model.defer="prestamo.cedula" />
+                  <x-jet-input-error for="prestamo.cedula" class="mt-2" />
+              </div>
+              <div class="col-span-6 sm:col-span-4 mt-4">
+                  <x-jet-label for="cedula" value="{{ __('Identificación del Supervisor') }}" />
+                  <x-jet-input id="cedula" type="number" class="mt-1 block w-full" wire:model.defer="prestamo.supervisor" />
+                  <x-jet-input-error for="prestamo.supervisor" class="mt-2" />
+              </div>
+              <div class="col-span-6 sm:col-span-4 mt-4">
+                  <x-jet-label for="cedula" value="{{ __('Proyecto') }}" />
+                  <x-jet-input id="cedula" type="number" class="mt-1 block w-full" wire:model.defer="prestamo.proyecto" />
+                  <x-jet-input-error for="prestamo.proyecto" class="mt-2" />
+              </div>
+              <div class="col-span-6 sm:col-span-4 mt-4">
+                  <x-jet-label for="cedula" value="{{ __('Bloque') }}" />
+                  <x-jet-input id="cedula" type="number" class="mt-1 block w-full" wire:model.defer="prestamo.bloque" />
+                  <x-jet-input-error for="prestamo.bloque" class="mt-2" />
               </div>
     
-              <div class="col-span-6 sm:col-span-4 mt-4">
-                  <label class="flex items-center">
-                      <input type="checkbox" wire:model.defer="producto.status" class="form-checkbox" />
-                      <span class="ml-2 text-sm text-gray-600">Activo</span>
-                  </label>
-              </div>
+             
           </x-slot>
     
           <x-slot name="footer">
@@ -230,7 +196,7 @@
                   {{ __('Cancelar') }}
               </x-jet-secondary-button>
     
-              <x-jet-danger-button  class="ml-2 text-indigo-600" wire:click="saveProducto()" wire:loading.attr="disabled">
+              <x-jet-danger-button  class="ml-2 text-indigo-600" wire:click="savePrestamo()" wire:loading.attr="disabled">
                   {{ __('Guardar') }}
               </x-jet-danger-button>
           </x-slot>

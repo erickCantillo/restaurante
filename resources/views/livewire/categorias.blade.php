@@ -208,7 +208,7 @@
                 </div>
                 <div class="col-span-6 sm:col-span-4">
                     <x-jet-label for="name" value="{{ __('Foto') }}" />
-                    <x-jet-input id="photo" name="photo" wire:model="photo" type="file" class="mt-1 block" />
+                    <x-jet-input id="photo" name="photo" wire:model="photo" type="file" class="mt-1 block" /> 
                     @error('photo') <span class="error">{{ $message }}</span> @enderror
 
                     @if ($photo)

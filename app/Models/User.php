@@ -62,4 +62,8 @@ class User extends Authenticatable
         return $this->hasMany(\App\Models\Equipo::class, 'responsable');
     }
 
+    public function prestar(){
+        return $this->hasmMany(\App\Models\Prestamo::class, 'almacenista_entrega');
+    }
+
 }

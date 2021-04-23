@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\AgregarEquipo;
 use App\Http\Livewire\Categorias;
 use App\Http\Livewire\Productos;
 use App\Http\Livewire\Equipos;
@@ -39,3 +40,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/equipos', Equipos::class)
 Route::middleware(['auth:sanctum', 'verified'])->get('/proyectos', Proyectos::class)->name('proyectos');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/solicitudes', solicituds::class)->name('solicitudes');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('agregarEqupo', AgregarEquipo::class)->name('agregar_equipo');
