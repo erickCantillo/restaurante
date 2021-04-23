@@ -133,7 +133,7 @@
                                     Editar
                                   </a>
 
-                                  <x-jet-danger-button  wire:loading.attr="disabled">
+                                  <x-jet-danger-button wire:click="confirmEquipoDeletion( {{ $equipo->id}})" wire:loading.attr="disabled">
                                     Eliminar
                                 </x-jet-danger-button>
                                 </td>
@@ -157,7 +157,7 @@
             </div>
         </div>
 
-        <x-jet-confirmation-modal wire:model="confirmingEquipoAdd">
+        <x-jet-confirmation-modal wire:model="confirmingEquipoDeletion">
           <x-slot name="title">
               {{ __('Eliminar Categoria') }}
           </x-slot>
@@ -167,11 +167,11 @@
           </x-slot>
    
           <x-slot name="footer">
-              <x-jet-secondary-button wire:click="$set('confirmingCategoriaDeletion', false)" wire:loading.attr="disabled">
+              <x-jet-secondary-button wire:click="$set('confirmingEquipoDeletion', false)" wire:loading.attr="disabled">
                   {{ __('Cancelar') }}
               </x-jet-secondary-button>
    
-              <x-jet-danger-button class="ml-2"  wire:loading.attr="disabled">
+              <x-jet-danger-button class="ml-2" wire:click="deleteItem({{ $confirmingEquipoDeletion }})" wire:loading.attr="disabled">
                   {{ __('Si, Eliminar') }}
               </x-jet-danger-button>
           </x-slot>

@@ -243,8 +243,12 @@
             <div class="max-w-3xl mx-auto px-4">
                 <div class="flex justify-between">
                     <div class="w-1/2">
+                        @if($paso == 1)
+                        <a  href="/equipos" class="w-32 focus:outline-none py-2 px-5 rounded-lg shadow-sm text-center text-indigo-400 bg-white hover:bg-gray-100 font-medium border">Volver</a>
+                        @endif
+                        
                         @if($paso > 1)
-                        <button  wire:click="anterior()" class="w-32 focus:outline-none py-2 px-5 rounded-lg shadow-sm text-center text-gray-600 bg-white hover:bg-gray-100 font-medium border">Anterior</button>
+                        <button  wire:click="anterior()" class="w-32 focus:outline-none py-2 px-5 rounded-lg shadow-sm text-center text-red-400 bg-white hover:bg-gray-100 font-medium border">Anterior</button>
                         @endif
                     </div>
                     

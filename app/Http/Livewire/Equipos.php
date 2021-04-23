@@ -52,7 +52,7 @@ class Equipos extends Component
         ]
         );
     }
-    public function confirmProductoDeletion( $id) 
+    public function confirmEquipoDeletion( $id) 
     {
         $this->confirmingEquipoDeletion = $id;
     }
