@@ -8,6 +8,7 @@ use App\Http\Livewire\Prestamos;
 use App\Http\Livewire\Proyectos;
 use App\Http\Livewire\Solicituds;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\AgregarPrestamo;
 use App\models\User;
 use App\Http\Livewire\UsersTable;
 /*
@@ -39,7 +40,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/equipos', Equipos::class)
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/proyectos', Proyectos::class)->name('proyectos');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('agregarEqupo', AgregarEquipo::class)->name('agregar_equipo');
+Route::middleware(['auth:sanctum', 'verified'])->get('agregarEqupo', AgregarEquipo::class)->namE('agregar_equipo');
 Route::middleware(['auth:sanctum', 'verified'])->get('/solicitudes', Solicituds::class)->name('solicituds');
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/reportes', Reportes::class)->name('reportes');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/agregarPrestamo', AgregarPrestamo::class)->name('agregar_prestamo');

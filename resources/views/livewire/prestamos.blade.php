@@ -33,9 +33,9 @@
                               </select>
                             </div>
                             <div class="mr-2 mt-3">
-                              <x-jet-button wire:click="confirmItemAdd" class="bg-green-400 hover:bg-blue-700">
+                              <a href="agregarPrestamo" class="bg-green-400 hover:bg-blue-700">
                                   Nuevo Prestamo
-                               </x-jet-button>
+                              </a>
                           </div>
                           </div>
                         @if($prestamos->count())

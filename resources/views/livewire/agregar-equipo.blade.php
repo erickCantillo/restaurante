@@ -71,10 +71,10 @@
                         <h2 class="text-2xl mb-4 text-gray-800 text-center font-bold">Registro Completo</h2>
 
                         <div class="text-gray-600 mb-8">
-                            Thank you. We have sent you an email to demo@demo.test. Please click the link in the message to activate your account.
+                            Todo listo!
                         </div>
 
-                        <a @click="step = 1" class="w-40 block mx-auto focus:outline-none py-2 px-5 rounded-lg shadow-sm text-center text-gray-600 bg-white hover:bg-gray-100 font-medium border">Todo listo! Regresar</a>
+                        <a href="/prestamos" class="w-40 block mx-auto focus:outline-none py-2 px-5 rounded-lg shadow-sm text-center text-gray-600 bg-white hover:bg-gray-100 font-medium border">Regresar</a>
                     </div>
                 </div>
             </div>
@@ -89,14 +89,14 @@
                     <div class="flex flex-col md:flex-row md:items-center md:justify-between">
                         <div class="flex-1">
                             @if($paso == 1)
-                                <div class="text-lg font-bold text-gray-700 leading-tight">Categoria del Equipo</div>
+                                <div class="text-lg font-bold text-gray-700 leading-tight">Escoger El Equipo</div>
                             @endif
                             @if($paso == 2)
-                                <div class="text-lg font-bold text-gray-700 leading-tight">Datos del Equipo {{ $equipo->codigo_interno }}</div>
+                                <div class="text-lg font-bold text-gray-700 leading-tight">Escoger el Usuario para prestarle {{ $equipo->categoria->name }}</div>
                             @endif
                            
                             @if($paso == 3)
-                                <div class="text-lg font-bold text-gray-700 leading-tight">Datos de Almacenamiento</div>
+                                <div class="text-lg font-bold text-gray-700 leading-tight">Condiciones del Prestamo</div>
                             @endif
                         </div>
 
